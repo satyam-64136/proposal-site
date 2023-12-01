@@ -24,7 +24,7 @@ setInterval(moveButton, 900);
 
 function changeContent() {
     document.getElementById('mainHeading').innerText = "YAY, see you soon...ɷ◡ɷ";
-    document.getElementById('catGif').src = "/images/goma-goma-cat.gif";
+    document.getElementById('catGif').src = "images/goma-goma-cat.gif";
     var sound = document.getElementById('yessoundEffect');
     sound.play();
 }
