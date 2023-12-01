@@ -46,5 +46,5 @@ function noButtonClick() {
     setTimeout(function () {
         document.getElementById('mainHeading').innerText = "Will, you go on a date with me?";
         document.getElementById('catGif').src = "images/peach-goma-love-heart-dance.gif";
-    }, 900);
+    }, 1500);
 }
