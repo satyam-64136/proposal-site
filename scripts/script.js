@@ -20,7 +20,7 @@ function moveButton() {
     noButton.style.left = `${randomPosition.left}px`;
 }
 
-setInterval(moveButton, 200);
+setInterval(moveButton, 500);
 
 function changeContent() {
     document.getElementById('mainHeading').innerText = "YAY, see you soon...ɷ◡ɷ";
