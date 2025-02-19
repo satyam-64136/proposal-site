@@ -127,4 +127,4 @@ function moveButton() {
     noButton.style.left = `${randomPosition.left}px`;
 }
 
-setInterval(moveButton, 500);
+setInterval(moveButton, 300);
