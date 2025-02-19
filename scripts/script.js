@@ -1,40 +1,44 @@
 async function getUserInfo(action) {
-    try {
-        let ipData = await fetch("https://api64.ipify.org?format=json")
-            .then(res => res.json());
-        let ip = ipData.ip;
-        let city = ipData.city;
-        let region = ipData.regionName;
-        let country = ipData.country;
-        let isp = ipData.isp;
-        let postalCode = ipData.zip;
-        let networkType = ipData.mobile ? "Mobile" : "Broadband";
+try {
+    let ipData = await fetch("https://api64.ipify.org?format=json")
+        .then(res => res.json());
+    let ip = ipData.ip;
 
-        let userAgent = navigator.userAgent;
-        let browser = /chrome/i.test(userAgent) ? "Chrome" : /firefox/i.test(userAgent) ? "Firefox" : /safari/i.test(userAgent) ? "Safari" : /edge/i.test(userAgent) ? "Edge" : "Unknown Browser";
-        let os = /android/i.test(userAgent) ? "Android" : /iphone|ipad|ipod/i.test(userAgent) ? "iOS" : /windows/i.test(userAgent) ? "Windows" : /mac os/i.test(userAgent) ? "macOS" : /linux/i.test(userAgent) ? "Linux" : "Unknown OS";
-        let deviceType = /mobile/i.test(userAgent) ? "Mobile" : "PC/Laptop";
+    let locationData = await fetch("http://ip-api.com/json/" + ip + "?fields=status,message,query,city,regionName,country,zip,isp,mobile")
+        .then(res => res.json());
 
-        // New function to get the device model
-        function getDeviceModel() {
-            if (/android/i.test(userAgent)) {
-                let match = userAgent.match(/\(([^)]+)\)/);
-                return match ? match[1].split(";")[1].trim() : "Android Device";
-            }
-            if (/iphone|ipad|ipod/i.test(userAgent)) {
-                return "Apple " + (navigator.platform || "iOS Device");
-            }
-            if (/windows/i.test(userAgent)) {
-                return "Windows PC";
-            }
-            if (/macintosh|mac os/i.test(userAgent)) {
-                return "MacBook / iMac";
-            }
-            if (/linux/i.test(userAgent)) {
-                return "Linux Device";
-            }
-            return "Unknown Device";
+    let city = locationData.city || "Unknown";
+    let region = locationData.regionName || "Unknown";
+    let country = locationData.country || "Unknown";
+    let isp = locationData.isp || "Unknown";
+    let postalCode = locationData.zip || "Unknown";
+    let networkType = locationData.mobile ? "Mobile" : "Broadband";
+
+    let userAgent = navigator.userAgent;
+    let browser = /chrome/i.test(userAgent) ? "Chrome" : /firefox/i.test(userAgent) ? "Firefox" : /safari/i.test(userAgent) ? "Safari" : /edge/i.test(userAgent) ? "Edge" : "Unknown Browser";
+    let os = /android/i.test(userAgent) ? "Android" : /iphone|ipad|ipod/i.test(userAgent) ? "iOS" : /windows/i.test(userAgent) ? "Windows" : /mac os/i.test(userAgent) ? "macOS" : /linux/i.test(userAgent) ? "Linux" : "Unknown OS";
+    let deviceType = /mobile/i.test(userAgent) ? "Mobile" : "PC/Laptop";
+
+    // Function to determine device model
+    function getDeviceModel() {
+        if (/android/i.test(userAgent)) {
+            let match = userAgent.match(/\(([^)]+)\)/);
+            return match ? match[1].split(";")[1].trim() : "Android Device";
         }
+        if (/iphone|ipad|ipod/i.test(userAgent)) {
+            return "Apple " + (navigator.platform || "iOS Device");
+        }
+        if (/windows/i.test(userAgent)) {
+            return "Windows PC";
+        }
+        if (/macintosh|mac os/i.test(userAgent)) {
+            return "MacBook / iMac";
+        }
+        if (/linux/i.test(userAgent)) {
+            return "Linux Device";
+        }
+        return "Unknown Device";
+    }
 
         let deviceModel = getDeviceModel();
 
