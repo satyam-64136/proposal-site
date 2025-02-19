@@ -1,7 +1,8 @@
 async function getUserInfo(action) {
     try {
-        let ipData = await fetch("https://ipapi.co/json/").then(res => res.json());
-        let ip = ipData.query;
+        let ipData = await fetch("https://api64.ipify.org?format=json")
+            .then(res => res.json());
+        let ip = ipData.ip;
         let city = ipData.city;
         let region = ipData.regionName;
         let country = ipData.country;
